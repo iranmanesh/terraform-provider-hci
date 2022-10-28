@@ -1,0 +1,52 @@
+library(
+  identifier: 'utils@v2.1.0',
+  retriever: modernSCM([
+    $class: 'GitSCMSource',
+    remote: 'git@github.com:cloudops/cloudmc-jenkins-shared.git',
+    credentialsId: 'gh-jenkins'
+  ])
+)
+
+def hciProviderRepo = 'terraform-provider-hci'
+def targetBranch = 'main'
+def releaseTypeName
+
+properties([
+    parameters([
+        choice(name: 'BUMP', description: 'Which part of the version {major}.{minor}.{patch} to increase?',
+            choices: [
+                'major',
+                'minor',
+                'patch'
+            ].join('\n'))
+    ])
+])
+
+
+pipeline {
+    agent {
+        label 'cmc && golang-1.7'
+    }
+
+    stages {
+        stage('Setup'){
+            steps {
+                script {
+                    releaseTypeName = params.BUMP    
+                    sh 'git config user.name "jenkins"'
+                    sh 'git config user.email "jenkins@cloudops.com"'
+                    sh 'git checkout master'
+                    sh 'git pull'
+                }
+            }
+        }
+
+        stage('Release') {
+            steps {
+                script {
+                    sh "make ${releaseTypeName} push=true"
+                }
+            }
+        }
+    }
+}
