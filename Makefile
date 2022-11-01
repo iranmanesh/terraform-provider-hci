@@ -76,7 +76,7 @@ fmt: ## Format go files
 	goimports -w $(GOFILES)
 
 .PHONY: checkfmt
-checkfmt: RESULT ?= $(shell goimports -l $(GOFILES) | tee >(if [ "$$(wc -l)" = 0 ]; then echo "OK"; fi))
+checkfmt: RESULT ?= $(shell goimports -l $(GOFILES) | tee >(if [ "$$(wc -l)" -eq 0 ]; then echo "OK"; fi))
 checkfmt: SHELL  := /usr/bin/env bash
 checkfmt: ## Check formatting of go files
 	@ $(MAKE) --no-print-directory log-$@
