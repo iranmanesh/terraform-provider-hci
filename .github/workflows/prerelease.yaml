@@ -25,10 +25,10 @@ jobs:
       with:
         # These secrets will need to be configured for the repository:
         gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-        passphrase: ${{ secrets.GPG_PASSPHRASE }}
+        passphrase: ${{ secrets.PASSPHRASE }}
 
     - name: Run GoReleaser
-      uses: goreleaser/goreleaser-action@v2.8.0
+      uses: goreleaser/goreleaser-action@v3
       if: startsWith(github.ref, 'refs/tags/')
       with:
         version: latest
