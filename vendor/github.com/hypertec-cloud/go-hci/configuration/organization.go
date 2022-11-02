@@ -51,12 +51,12 @@ func (organizationApi *OrganizationApi) Get(id string) (*Organization, error) {
 	return parseOrganization(data), nil
 }
 
-//List all organizations
+// List all organizations
 func (organizationApi *OrganizationApi) List() ([]Organization, error) {
 	return organizationApi.ListWithOptions(map[string]string{})
 }
 
-//List all organizations. Can use options to do sorting and paging.
+// List all organizations. Can use options to do sorting and paging.
 func (organizationApi *OrganizationApi) ListWithOptions(options map[string]string) ([]Organization, error) {
 	data, err := organizationApi.configurationService.List(options)
 	if err != nil {

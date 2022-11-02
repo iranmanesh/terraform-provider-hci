@@ -12,7 +12,7 @@ type ConfigurationService interface {
 	Delete(id string, body []byte, options map[string]string) ([]byte, error)
 }
 
-//Implementation of the ConfigurationService
+// Implementation of the ConfigurationService
 type ConfigurationApi struct {
 	apiClient         api.ApiClient
 	configurationType string
@@ -29,7 +29,7 @@ func (configurationApi *ConfigurationApi) buildEndpoint() string {
 	return "/" + configurationApi.configurationType
 }
 
-//Get. Returns a []byte (of a json object) that should be unmarshalled to a specific entity
+// Get. Returns a []byte (of a json object) that should be unmarshalled to a specific entity
 func (configurationApi *ConfigurationApi) Get(id string, options map[string]string) ([]byte, error) {
 	request := api.HciRequest{
 		Method:   api.GET,
@@ -45,7 +45,7 @@ func (configurationApi *ConfigurationApi) Get(id string, options map[string]stri
 	return response.Data, nil
 }
 
-//Get list. Returns a []byte (of a json object) that should be unmarshalled to a specific entity
+// Get list. Returns a []byte (of a json object) that should be unmarshalled to a specific entity
 func (configurationApi *ConfigurationApi) List(options map[string]string) ([]byte, error) {
 	request := api.HciRequest{
 		Method:   api.GET,
@@ -61,7 +61,7 @@ func (configurationApi *ConfigurationApi) List(options map[string]string) ([]byt
 	return response.Data, nil
 }
 
-//Create as described in the body parameter (json object). Returns a []byte (of a json object) that should be unmarshalled to a specific entity
+// Create as described in the body parameter (json object). Returns a []byte (of a json object) that should be unmarshalled to a specific entity
 func (configurationApi *ConfigurationApi) Create(body []byte, options map[string]string) ([]byte, error) {
 	request := api.HciRequest{
 		Method:   api.POST,
@@ -78,7 +78,7 @@ func (configurationApi *ConfigurationApi) Create(body []byte, options map[string
 	return response.Data, nil
 }
 
-//Update specified id as described in the body parameter (json object). Returns a []byte (of a json object) that should be unmarshalled to a specific entity
+// Update specified id as described in the body parameter (json object). Returns a []byte (of a json object) that should be unmarshalled to a specific entity
 func (configurationApi *ConfigurationApi) Update(id string, body []byte, options map[string]string) ([]byte, error) {
 	request := api.HciRequest{
 		Method:   api.PUT,
@@ -95,7 +95,7 @@ func (configurationApi *ConfigurationApi) Update(id string, body []byte, options
 	return response.Data, nil
 }
 
-//Delete. A body (json object) can be provided if some fields must be sent to server. Returns a []byte (of a json object) that should be unmarshalled to a specific entity
+// Delete. A body (json object) can be provided if some fields must be sent to server. Returns a []byte (of a json object) that should be unmarshalled to a specific entity
 func (configurationApi ConfigurationApi) Delete(id string, body []byte, options map[string]string) ([]byte, error) {
 	request := api.HciRequest{
 		Method:   api.DELETE,

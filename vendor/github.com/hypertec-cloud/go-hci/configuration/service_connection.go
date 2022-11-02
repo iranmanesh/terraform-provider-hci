@@ -47,12 +47,12 @@ func (serviceConnectionApi *ServiceConnectionApi) Get(id string) (*ServiceConnec
 	return parseServiceConnection(data), nil
 }
 
-//List all service connections
+// List all service connections
 func (serviceConnectionApi *ServiceConnectionApi) List() ([]ServiceConnection, error) {
 	return serviceConnectionApi.ListWithOptions(map[string]string{})
 }
 
-//List all service connections. Can use options to do sorting and paging.
+// List all service connections. Can use options to do sorting and paging.
 func (serviceConnectionApi *ServiceConnectionApi) ListWithOptions(options map[string]string) ([]ServiceConnection, error) {
 	data, err := serviceConnectionApi.configurationService.List(options)
 	if err != nil {

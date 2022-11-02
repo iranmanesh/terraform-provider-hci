@@ -57,7 +57,7 @@ func parseVpcList(data []byte) []Vpc {
 	return vpcs
 }
 
-//Get vpc with the specified id for the current environment
+// Get vpc with the specified id for the current environment
 func (vpcApi *VpcApi) Get(id string) (*Vpc, error) {
 	data, err := vpcApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -66,12 +66,12 @@ func (vpcApi *VpcApi) Get(id string) (*Vpc, error) {
 	return parseVpc(data), nil
 }
 
-//List all vpcs for the current environment
+// List all vpcs for the current environment
 func (vpcApi *VpcApi) List() ([]Vpc, error) {
 	return vpcApi.ListWithOptions(map[string]string{})
 }
 
-//List all vpcs for the current environment. Can use options to do sorting and paging.
+// List all vpcs for the current environment. Can use options to do sorting and paging.
 func (vpcApi *VpcApi) ListWithOptions(options map[string]string) ([]Vpc, error) {
 	data, err := vpcApi.entityService.List(options)
 	if err != nil {
@@ -80,7 +80,7 @@ func (vpcApi *VpcApi) ListWithOptions(options map[string]string) ([]Vpc, error) 
 	return parseVpcList(data), nil
 }
 
-//Create an vpc in the current environment
+// Create an vpc in the current environment
 func (vpcApi *VpcApi) Create(vpc Vpc) (*Vpc, error) {
 	send, merr := json.Marshal(vpc)
 	if merr != nil {
@@ -93,7 +93,7 @@ func (vpcApi *VpcApi) Create(vpc Vpc) (*Vpc, error) {
 	return parseVpc(body), nil
 }
 
-//Create an vpc in the current environment
+// Create an vpc in the current environment
 func (vpcApi *VpcApi) Update(vpc Vpc) (*Vpc, error) {
 	send, merr := json.Marshal(vpc)
 	if merr != nil {
@@ -106,13 +106,13 @@ func (vpcApi *VpcApi) Update(vpc Vpc) (*Vpc, error) {
 	return parseVpc(body), nil
 }
 
-//Destroy a vpc with specified id in the current environment
+// Destroy a vpc with specified id in the current environment
 func (vpcApi *VpcApi) Destroy(id string) (bool, error) {
 	_, err := vpcApi.entityService.Delete(id, []byte{}, map[string]string{})
 	return err == nil, err
 }
 
-//Restart the router of the vpc with the specified id exists in the current environment
+// Restart the router of the vpc with the specified id exists in the current environment
 func (vpcApi *VpcApi) RestartRouter(id string) (bool, error) {
 	_, err := vpcApi.entityService.Execute(id, VPC_RESTART_ROUTER_OPERATION, []byte{}, map[string]string{})
 	return err == nil, err

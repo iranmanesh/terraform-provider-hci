@@ -1,6 +1,6 @@
 package hci
 
-//All entity types for the cloudca service
+// All entity types for the hci service
 const (
 	AFFINITY_GROUP_ENTITY_TYPE         = "affinitygroups"
 	INSTANCE_ENTITY_TYPE               = "instances"

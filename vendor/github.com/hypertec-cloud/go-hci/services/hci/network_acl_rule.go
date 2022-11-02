@@ -54,7 +54,7 @@ func parseNetworkAclRuleList(data []byte) []NetworkAclRule {
 	return aclRules
 }
 
-//Get network acl rule with the specified id for the current environment
+// Get network acl rule with the specified id for the current environment
 func (networkAclRuleApi *NetworkAclRuleApi) Get(id string) (*NetworkAclRule, error) {
 	data, err := networkAclRuleApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -75,7 +75,7 @@ func (networkAclRuleApi *NetworkAclRuleApi) List() ([]NetworkAclRule, error) {
 	return networkAclRuleApi.ListWithOptions(map[string]string{})
 }
 
-//List all network acl rules for the NetworkAcl
+// List all network acl rules for the NetworkAcl
 func (networkAclRuleApi *NetworkAclRuleApi) ListByNetworkAclId(networkAclId string) ([]NetworkAclRule, error) {
 	return networkAclRuleApi.ListWithOptions(map[string]string{"network_acl_id": networkAclId})
 }

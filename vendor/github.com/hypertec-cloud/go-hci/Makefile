@@ -48,7 +48,7 @@ format: log-format ## Format all go files
 
 .PHONY: checkfmt
 checkfmt: SHELL :=/bin/bash
-checkfmt: RESULT = $(shell gofmt -l $(GOFILES) | tee >(if [ "$$(wc -l)" = 0 ]; then echo "OK"; fi))
+checkfmt: RESULT = $(shell gofmt -l $(GOFILES) | tee >(if [ "$$(wc -l)" -eq 0 ]; then echo "OK"; fi))
 checkfmt: log-checkfmt ## Check formatting of all go files
 	@echo "$(RESULT)"
 	@if [ "$(RESULT)" != "OK" ]; then exit 1; fi
@@ -60,7 +60,7 @@ test: log-test ## Run tests
 .PHONY: tools
 tools: log-tools ## Install required tools
 	@cd $$GOPATH && curl -L https://git.io/vp6lP | sh # gometalinter
-	@cd /tmp && go get -v -u github.com/git-chglog/git-chglog/cmd/git-chglog # git-chglog
+	@cd /tmp && GO111MODULE=off go get -v -u github.com/git-chglog/git-chglog/cmd/git-chglog # git-chglog
 
 #####################
 ## Release targets ##

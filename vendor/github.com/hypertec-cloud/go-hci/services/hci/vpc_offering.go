@@ -40,7 +40,7 @@ func parseVpcOfferingList(data []byte) []VpcOffering {
 	return vpcOfferings
 }
 
-//Get disk offering with the specified id for the current environment
+// Get disk offering with the specified id for the current environment
 func (vpcOfferingApi *VpcOfferingApi) Get(id string) (*VpcOffering, error) {
 	data, err := vpcOfferingApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -49,12 +49,12 @@ func (vpcOfferingApi *VpcOfferingApi) Get(id string) (*VpcOffering, error) {
 	return parseVpcOffering(data), nil
 }
 
-//List all disk offerings for the current environment
+// List all disk offerings for the current environment
 func (vpcOfferingApi *VpcOfferingApi) List() ([]VpcOffering, error) {
 	return vpcOfferingApi.ListWithOptions(map[string]string{})
 }
 
-//List all disk offerings for the current environment. Can use options to do sorting and paging.
+// List all disk offerings for the current environment. Can use options to do sorting and paging.
 func (vpcOfferingApi *VpcOfferingApi) ListWithOptions(options map[string]string) ([]VpcOffering, error) {
 	data, err := vpcOfferingApi.entityService.List(options)
 	if err != nil {

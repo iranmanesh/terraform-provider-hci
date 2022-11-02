@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-//Task status
+// Task status
 const (
 	PENDING = "PENDING"
 	SUCCESS = "SUCCESS"
@@ -16,7 +16,7 @@ const (
 
 const DEFAULT_POLLING_INTERVAL = 1000
 
-//A Task object. This object can be used to poll asynchronous operations.
+// A Task object. This object can be used to poll asynchronous operations.
 type Task struct {
 	Id      string
 	Status  string
@@ -40,14 +40,14 @@ type TaskApi struct {
 	apiClient api.ApiClient
 }
 
-//Create a new TaskService
+// Create a new TaskService
 func NewTaskService(apiClient api.ApiClient) TaskService {
 	return &TaskApi{
 		apiClient: apiClient,
 	}
 }
 
-//Retrieve a Task with sepecified id
+// Retrieve a Task with sepecified id
 func (taskApi *TaskApi) Get(id string) (*Task, error) {
 	request := api.HciRequest{
 		Method:   api.GET,
@@ -73,8 +73,8 @@ func (taskApi *TaskApi) Get(id string) (*Task, error) {
 	return &task, nil
 }
 
-//Poll an the Task API. Blocks until success or failure.
-//Returns result on success, an error otherwise
+// Poll an the Task API. Blocks until success or failure.
+// Returns result on success, an error otherwise
 func (taskApi *TaskApi) Poll(id string, milliseconds time.Duration) ([]byte, error) {
 	ticker := time.NewTicker(time.Millisecond * milliseconds)
 	task, err := taskApi.Get(id)
@@ -96,7 +96,7 @@ func (taskApi *TaskApi) Poll(id string, milliseconds time.Duration) ([]byte, err
 	return task.Result, nil
 }
 
-//Poll an the Task API. Blocks until success or failure
+// Poll an the Task API. Blocks until success or failure
 func (taskApi *TaskApi) PollResponse(response *api.HciResponse, milliseconds time.Duration) ([]byte, error) {
 	if strings.EqualFold(response.TaskStatus, SUCCESS) {
 		return response.Data, nil
@@ -106,22 +106,22 @@ func (taskApi *TaskApi) PollResponse(response *api.HciResponse, milliseconds tim
 	return taskApi.Poll(response.TaskId, milliseconds)
 }
 
-//Returns true if task has failed
+// Returns true if task has failed
 func (task Task) Failed() bool {
 	return strings.EqualFold(task.Status, FAILED)
 }
 
-//Returns true if task was successful
+// Returns true if task was successful
 func (task Task) Success() bool {
 	return strings.EqualFold(task.Status, SUCCESS)
 }
 
-//Returns true if task is still executing
+// Returns true if task is still executing
 func (task Task) Pending() bool {
 	return strings.EqualFold(task.Status, PENDING)
 }
 
-//Returns true if task has completed its execution
+// Returns true if task has completed its execution
 func (task Task) Completed() bool {
 	return !task.Pending()
 }

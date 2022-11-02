@@ -58,7 +58,7 @@ func parseTemplateList(data []byte) []Template {
 	return templates
 }
 
-//Get template with the specified id for the current environment
+// Get template with the specified id for the current environment
 func (templateApi *TemplateApi) Get(id string) (*Template, error) {
 	data, err := templateApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -67,12 +67,12 @@ func (templateApi *TemplateApi) Get(id string) (*Template, error) {
 	return parseTemplate(data), nil
 }
 
-//List all templates for the current environment
+// List all templates for the current environment
 func (templateApi *TemplateApi) List() ([]Template, error) {
 	return templateApi.ListWithOptions(map[string]string{})
 }
 
-//List all templates for the current environment. Can use options to do sorting and paging.
+// List all templates for the current environment. Can use options to do sorting and paging.
 func (templateApi *TemplateApi) ListWithOptions(options map[string]string) ([]Template, error) {
 	data, err := templateApi.entityService.List(options)
 	if err != nil {

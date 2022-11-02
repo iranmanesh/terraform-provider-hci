@@ -45,7 +45,7 @@ func parseDiskOfferingList(data []byte) []DiskOffering {
 	return diskOfferings
 }
 
-//Get disk offering with the specified id for the current environment
+// Get disk offering with the specified id for the current environment
 func (diskOfferingApi *DiskOfferingApi) Get(id string) (*DiskOffering, error) {
 	data, err := diskOfferingApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -54,12 +54,12 @@ func (diskOfferingApi *DiskOfferingApi) Get(id string) (*DiskOffering, error) {
 	return parseDiskOffering(data), nil
 }
 
-//List all disk offerings for the current environment
+// List all disk offerings for the current environment
 func (diskOfferingApi *DiskOfferingApi) List() ([]DiskOffering, error) {
 	return diskOfferingApi.ListWithOptions(map[string]string{})
 }
 
-//List all disk offerings for the current environment. Can use options to do sorting and paging.
+// List all disk offerings for the current environment. Can use options to do sorting and paging.
 func (diskOfferingApi *DiskOfferingApi) ListWithOptions(options map[string]string) ([]DiskOffering, error) {
 	data, err := diskOfferingApi.entityService.List(options)
 	if err != nil {

@@ -39,7 +39,7 @@ func parseNetworkOfferingList(data []byte) []NetworkOffering {
 	return networkOfferings
 }
 
-//Get network offering with the specified id for the current environment
+// Get network offering with the specified id for the current environment
 func (networkOfferingApi *NetworkOfferingApi) Get(id string) (*NetworkOffering, error) {
 	data, err := networkOfferingApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -48,12 +48,12 @@ func (networkOfferingApi *NetworkOfferingApi) Get(id string) (*NetworkOffering, 
 	return parseNetworkOffering(data), nil
 }
 
-//List all network offerings for the current environment
+// List all network offerings for the current environment
 func (networkOfferingApi *NetworkOfferingApi) List() ([]NetworkOffering, error) {
 	return networkOfferingApi.ListWithOptions(map[string]string{})
 }
 
-//List all network offerings for the current environment. Can use options to do sorting and paging.
+// List all network offerings for the current environment. Can use options to do sorting and paging.
 func (networkOfferingApi *NetworkOfferingApi) ListWithOptions(options map[string]string) ([]NetworkOffering, error) {
 	data, err := networkOfferingApi.entityService.List(options)
 	if err != nil {

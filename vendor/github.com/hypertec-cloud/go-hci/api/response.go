@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-//Status codes
+// Status codes
 const (
 	OK              = 200
 	MUTIPLE_CHOICES = 300
@@ -16,14 +16,14 @@ const (
 	NOT_FOUND       = 404
 )
 
-//An API error
+// An API error
 type HciError struct {
 	ErrorCode string                 `json:"errorCode"`
 	Message   string                 `json:"message"`
 	Context   map[string]interface{} `json:"context"`
 }
 
-//An Api Response
+// An Api Response
 type HciResponse struct {
 	TaskId     string
 	TaskStatus string
@@ -33,12 +33,12 @@ type HciResponse struct {
 	MetaData   map[string]interface{}
 }
 
-//Returns true if API response has errors
+// Returns true if API response has errors
 func (hciResponse HciResponse) IsError() bool {
 	return !isInOKRange(hciResponse.StatusCode)
 }
 
-//An Api Response with errors
+// An Api Response with errors
 type HciErrorResponse HciResponse
 
 func (errorResponse HciErrorResponse) Error() string {
