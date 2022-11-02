@@ -44,7 +44,7 @@ func parseNetworkAclList(data []byte) []NetworkAcl {
 	return networkAcls
 }
 
-//Get network acl with the specified id for the current environment
+// Get network acl with the specified id for the current environment
 func (networkAclApi *NetworkAclApi) Get(id string) (*NetworkAcl, error) {
 	data, err := networkAclApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -53,17 +53,17 @@ func (networkAclApi *NetworkAclApi) Get(id string) (*NetworkAcl, error) {
 	return parseNetworkAcl(data), nil
 }
 
-//List all network offerings for the current environment
+// List all network offerings for the current environment
 func (networkAclApi *NetworkAclApi) List() ([]NetworkAcl, error) {
 	return networkAclApi.ListWithOptions(map[string]string{})
 }
 
-//List all network offerings for the current environment
+// List all network offerings for the current environment
 func (networkAclApi *NetworkAclApi) ListByVpcId(vpcId string) ([]NetworkAcl, error) {
 	return networkAclApi.ListWithOptions(map[string]string{"vpc_id": vpcId})
 }
 
-//List all network offerings for the current environment. Can use options to do sorting and paging.
+// List all network offerings for the current environment. Can use options to do sorting and paging.
 func (networkAclApi *NetworkAclApi) ListWithOptions(options map[string]string) ([]NetworkAcl, error) {
 	data, err := networkAclApi.entityService.List(options)
 	if err != nil {

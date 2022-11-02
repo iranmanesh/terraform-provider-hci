@@ -44,7 +44,7 @@ func parseSSHKeyList(data []byte) []SSHKey {
 	return sshKeys
 }
 
-//Get SSH key with the specified id for the current environment
+// Get SSH key with the specified id for the current environment
 func (sshKeyApi *SSHKeyApi) Get(name string) (*SSHKey, error) {
 	data, err := sshKeyApi.entityService.Get(name, map[string]string{})
 	if err != nil {
@@ -53,12 +53,12 @@ func (sshKeyApi *SSHKeyApi) Get(name string) (*SSHKey, error) {
 	return parseSSHKey(data), nil
 }
 
-//List all SSH keys for the current environment
+// List all SSH keys for the current environment
 func (sshKeyApi *SSHKeyApi) List() ([]SSHKey, error) {
 	return sshKeyApi.ListWithOptions(map[string]string{})
 }
 
-//List all SSH keys for the current environment. Can use options to do sorting and paging.
+// List all SSH keys for the current environment. Can use options to do sorting and paging.
 func (sshKeyApi *SSHKeyApi) ListWithOptions(options map[string]string) ([]SSHKey, error) {
 	data, err := sshKeyApi.entityService.List(options)
 	if err != nil {
@@ -67,7 +67,7 @@ func (sshKeyApi *SSHKeyApi) ListWithOptions(options map[string]string) ([]SSHKey
 	return parseSSHKeyList(data), nil
 }
 
-//Create an SSH key in the current environment
+// Create an SSH key in the current environment
 func (sshKeyApi *SSHKeyApi) Create(key SSHKey) (*SSHKey, error) {
 	send, merr := json.Marshal(key)
 	if merr != nil {
@@ -80,7 +80,7 @@ func (sshKeyApi *SSHKeyApi) Create(key SSHKey) (*SSHKey, error) {
 	return parseSSHKey(body), nil
 }
 
-//Delete an SSH Key with specified id in the current environment
+// Delete an SSH Key with specified id in the current environment
 func (sshKeyApi *SSHKeyApi) Delete(id string) (bool, error) {
 	_, err := sshKeyApi.entityService.Delete(id, []byte{}, map[string]string{})
 	return err == nil, err

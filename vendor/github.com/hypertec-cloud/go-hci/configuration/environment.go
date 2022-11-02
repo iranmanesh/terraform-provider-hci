@@ -51,7 +51,7 @@ func parseEnvironmentList(data []byte) []Environment {
 	return environments
 }
 
-//Get environment with the specified id
+// Get environment with the specified id
 func (environmentApi *EnvironmentApi) Get(id string) (*Environment, error) {
 	data, err := environmentApi.configurationService.Get(id, map[string]string{})
 	if err != nil {
@@ -60,12 +60,12 @@ func (environmentApi *EnvironmentApi) Get(id string) (*Environment, error) {
 	return parseEnvironment(data), nil
 }
 
-//List all environments
+// List all environments
 func (environmentApi *EnvironmentApi) List() ([]Environment, error) {
 	return environmentApi.ListWithOptions(map[string]string{})
 }
 
-//List all instances for the current environment. Can use options to do sorting and paging.
+// List all instances for the current environment. Can use options to do sorting and paging.
 func (environmentApi *EnvironmentApi) ListWithOptions(options map[string]string) ([]Environment, error) {
 	data, err := environmentApi.configurationService.List(options)
 	if err != nil {
@@ -74,7 +74,7 @@ func (environmentApi *EnvironmentApi) ListWithOptions(options map[string]string)
 	return parseEnvironmentList(data), nil
 }
 
-//Create environment
+// Create environment
 func (environmentApi *EnvironmentApi) Create(environment Environment) (*Environment, error) {
 	send, merr := json.Marshal(environment)
 	if merr != nil {

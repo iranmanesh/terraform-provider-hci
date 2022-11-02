@@ -1,6 +1,6 @@
 package api
 
-//HTTP Methods
+// HTTP Methods
 const (
 	GET    = "GET"
 	POST   = "POST"
@@ -8,7 +8,7 @@ const (
 	PUT    = "PUT"
 )
 
-//A request object
+// A request object
 type HciRequest struct {
 	Method   string
 	Endpoint string

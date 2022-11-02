@@ -122,7 +122,7 @@ func parseInstanceList(data []byte) []Instance {
 	return instances
 }
 
-//Get instance with the specified id for the current environment
+// Get instance with the specified id for the current environment
 func (instanceApi *InstanceApi) Get(id string) (*Instance, error) {
 	data, err := instanceApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -131,12 +131,12 @@ func (instanceApi *InstanceApi) Get(id string) (*Instance, error) {
 	return parseInstance(data), nil
 }
 
-//List all instances for the current environment
+// List all instances for the current environment
 func (instanceApi *InstanceApi) List() ([]Instance, error) {
 	return instanceApi.ListWithOptions(map[string]string{})
 }
 
-//List all instances for the current environment. Can use options to do sorting and paging.
+// List all instances for the current environment. Can use options to do sorting and paging.
 func (instanceApi *InstanceApi) ListWithOptions(options map[string]string) ([]Instance, error) {
 	data, err := instanceApi.entityService.List(options)
 	if err != nil {
@@ -145,7 +145,7 @@ func (instanceApi *InstanceApi) ListWithOptions(options map[string]string) ([]In
 	return parseInstanceList(data), nil
 }
 
-//Create an instance in the current environment
+// Create an instance in the current environment
 func (instanceApi *InstanceApi) Create(instance Instance) (*Instance, error) {
 	send, merr := json.Marshal(instance)
 	if merr != nil {
@@ -158,8 +158,8 @@ func (instanceApi *InstanceApi) Create(instance Instance) (*Instance, error) {
 	return parseInstance(body), nil
 }
 
-//Destroy an instance with specified id in the current environment
-//Set the purge flag to true if you want to purge immediately
+// Destroy an instance with specified id in the current environment
+// Set the purge flag to true if you want to purge immediately
 func (instanceApi *InstanceApi) Destroy(id string, purge bool) (bool, error) {
 	send, merr := json.Marshal(DestroyOptions{
 		PurgeImmediately: purge,
@@ -171,8 +171,8 @@ func (instanceApi *InstanceApi) Destroy(id string, purge bool) (bool, error) {
 	return err == nil, err
 }
 
-//Destroy an instance with specified id in the current environment
-//Set the purge flag to true if you want to purge immediately
+// Destroy an instance with specified id in the current environment
+// Set the purge flag to true if you want to purge immediately
 func (instanceApi *InstanceApi) DestroyWithOptions(id string, options DestroyOptions) (bool, error) {
 	send, merr := json.Marshal(options)
 	if merr != nil {
@@ -182,21 +182,21 @@ func (instanceApi *InstanceApi) DestroyWithOptions(id string, options DestroyOpt
 	return err == nil, err
 }
 
-//Purge an instance with the specified id in the current environment
-//The instance must be in the Destroyed state. To destroy and purge an instance, see the Destroy method
+// Purge an instance with the specified id in the current environment
+// The instance must be in the Destroyed state. To destroy and purge an instance, see the Destroy method
 func (instanceApi *InstanceApi) Purge(id string) (bool, error) {
 	_, err := instanceApi.entityService.Execute(id, INSTANCE_PURGE_OPERATION, []byte{}, map[string]string{})
 	return err == nil, err
 }
 
-//Recover a destroyed instance with the specified id in the current environment
-//Note: Cannot recover instances that have been purged
+// Recover a destroyed instance with the specified id in the current environment
+// Note: Cannot recover instances that have been purged
 func (instanceApi *InstanceApi) Recover(id string) (bool, error) {
 	_, err := instanceApi.entityService.Execute(id, INSTANCE_RECOVER_OPERATION, []byte{}, map[string]string{})
 	return err == nil, err
 }
 
-//Check if instance with specified id exists in the current environment
+// Check if instance with specified id exists in the current environment
 func (instanceApi *InstanceApi) Exists(id string) (bool, error) {
 	_, err := instanceApi.Get(id)
 	if err != nil {
@@ -208,20 +208,20 @@ func (instanceApi *InstanceApi) Exists(id string) (bool, error) {
 	return true, nil
 }
 
-//Start a stopped instance with specified id exists in the current environment
+// Start a stopped instance with specified id exists in the current environment
 func (instanceApi *InstanceApi) Start(id string) (bool, error) {
 	_, err := instanceApi.entityService.Execute(id, INSTANCE_START_OPERATION, []byte{}, map[string]string{})
 	return err == nil, err
 }
 
-//Stop a running instance with specified id exists in the current environment
+// Stop a running instance with specified id exists in the current environment
 func (instanceApi *InstanceApi) Stop(id string) (bool, error) {
 	_, err := instanceApi.entityService.Execute(id, INSTANCE_STOP_OPERATION, []byte{}, map[string]string{})
 	return err == nil, err
 }
 
-//Associate an SSH key to the instance with the specified id exists in the current environment
-//Note: This will reboot your instance if running
+// Associate an SSH key to the instance with the specified id exists in the current environment
+// Note: This will reboot your instance if running
 func (instanceApi *InstanceApi) AssociateSSHKey(id string, sshKeyName string) (bool, error) {
 	send, merr := json.Marshal(Instance{
 		SSHKeyName: sshKeyName,
@@ -233,14 +233,14 @@ func (instanceApi *InstanceApi) AssociateSSHKey(id string, sshKeyName string) (b
 	return err == nil, err
 }
 
-//Reboot a running instance with specified id exists in the current environment
+// Reboot a running instance with specified id exists in the current environment
 func (instanceApi *InstanceApi) Reboot(id string) (bool, error) {
 	_, err := instanceApi.entityService.Execute(id, INSTANCE_REBOOT_OPERATION, []byte{}, map[string]string{})
 	return err == nil, err
 }
 
-//Change the compute offering of the instance with the specified id exists in the current environment
-//Note: This will reboot your instance if running
+// Change the compute offering of the instance with the specified id exists in the current environment
+// Note: This will reboot your instance if running
 func (instanceApi *InstanceApi) ChangeComputeOffering(instance Instance) (bool, error) {
 	send, merr := json.Marshal(instance)
 	if merr != nil {
@@ -250,7 +250,7 @@ func (instanceApi *InstanceApi) ChangeComputeOffering(instance Instance) (bool, 
 	return err == nil, err
 }
 
-//Reset the password of the instance with the specified id exists in the current environment
+// Reset the password of the instance with the specified id exists in the current environment
 func (instanceApi *InstanceApi) ResetPassword(id string) (string, error) {
 	body, err := instanceApi.entityService.Execute(id, INSTANCE_RESET_PASSWORD_OPERATION, []byte{}, map[string]string{})
 	if err != nil {
@@ -260,8 +260,8 @@ func (instanceApi *InstanceApi) ResetPassword(id string) (string, error) {
 	return instance.Password, nil
 }
 
-//Change the network of the instance with the specified id
-//Note: This will reboot your instance, remove all pfrs of this instance and remove the instance from all lbrs.
+// Change the network of the instance with the specified id
+// Note: This will reboot your instance, remove all pfrs of this instance and remove the instance from all lbrs.
 func (instanceApi *InstanceApi) ChangeNetwork(id string, networkId string) (bool, error) {
 	send, merr := json.Marshal(Instance{NetworkId: networkId})
 	if merr != nil {
@@ -271,7 +271,7 @@ func (instanceApi *InstanceApi) ChangeNetwork(id string, networkId string) (bool
 	return err == nil, err
 }
 
-//Create a recovery point of the instance with the specified id exists in the current environment
+// Create a recovery point of the instance with the specified id exists in the current environment
 func (instanceApi *InstanceApi) CreateRecoveryPoint(id string, recoveryPoint RecoveryPoint) (bool, error) {
 	send, merr := json.Marshal(Instance{
 		RecoveryPoint: recoveryPoint,

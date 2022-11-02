@@ -65,7 +65,7 @@ func parseVolumeList(data []byte) []Volume {
 	return volumes
 }
 
-//Get volume with the specified id for the current environment
+// Get volume with the specified id for the current environment
 func (volumeApi *VolumeApi) Get(id string) (*Volume, error) {
 	data, err := volumeApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -74,19 +74,19 @@ func (volumeApi *VolumeApi) Get(id string) (*Volume, error) {
 	return parseVolume(data), nil
 }
 
-//List all volumes for the current environment
+// List all volumes for the current environment
 func (volumeApi *VolumeApi) List() ([]Volume, error) {
 	return volumeApi.ListWithOptions(map[string]string{})
 }
 
-//List all volumes of specified type for the current environment
+// List all volumes of specified type for the current environment
 func (volumeApi *VolumeApi) ListOfType(volumeType string) ([]Volume, error) {
 	return volumeApi.ListWithOptions(map[string]string{
 		"type": volumeType,
 	})
 }
 
-//List all volumes for the current environment. Can use options to do sorting and paging.
+// List all volumes for the current environment. Can use options to do sorting and paging.
 func (volumeApi *VolumeApi) ListWithOptions(options map[string]string) ([]Volume, error) {
 	data, err := volumeApi.entityService.List(options)
 	if err != nil {

@@ -40,7 +40,7 @@ func parseUserList(data []byte) []User {
 	return users
 }
 
-//Get user with the specified id
+// Get user with the specified id
 func (userApi *UserApi) Get(id string) (*User, error) {
 	data, err := userApi.configurationService.Get(id, map[string]string{})
 	if err != nil {
@@ -49,12 +49,12 @@ func (userApi *UserApi) Get(id string) (*User, error) {
 	return parseUser(data), nil
 }
 
-//List all users
+// List all users
 func (userApi *UserApi) List() ([]User, error) {
 	return userApi.ListWithOptions(map[string]string{})
 }
 
-//List all instances for the current user. Can use options to do sorting and paging.
+// List all instances for the current user. Can use options to do sorting and paging.
 func (userApi *UserApi) ListWithOptions(options map[string]string) ([]User, error) {
 	data, err := userApi.configurationService.List(options)
 	if err != nil {

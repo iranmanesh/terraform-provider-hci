@@ -67,7 +67,7 @@ func parseNetworkList(data []byte) []Network {
 	return networks
 }
 
-//Get network with the specified id for the current environment
+// Get network with the specified id for the current environment
 func (networkApi *NetworkApi) Get(id string) (*Network, error) {
 	data, err := networkApi.entityService.Get(id, map[string]string{})
 	if err != nil {
@@ -76,19 +76,19 @@ func (networkApi *NetworkApi) Get(id string) (*Network, error) {
 	return parseNetwork(data), nil
 }
 
-//List all networks for the current environment
+// List all networks for the current environment
 func (networkApi *NetworkApi) List() ([]Network, error) {
 	return networkApi.ListWithOptions(map[string]string{})
 }
 
-//List all networks of a vpc for the current environment
+// List all networks of a vpc for the current environment
 func (networkApi *NetworkApi) ListOfVpc(vpcId string) ([]Network, error) {
 	return networkApi.ListWithOptions(map[string]string{
 		vpcId: vpcId,
 	})
 }
 
-//List all networks for the current environment. Can use options to do sorting and paging.
+// List all networks for the current environment. Can use options to do sorting and paging.
 func (networkApi *NetworkApi) ListWithOptions(options map[string]string) ([]Network, error) {
 	data, err := networkApi.entityService.List(options)
 	if err != nil {

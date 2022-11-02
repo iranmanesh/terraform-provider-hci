@@ -42,7 +42,7 @@ func NewInsecureApiClient(apiURL, apiKey string) ApiClient {
 	}
 }
 
-//Build a URL by using endpoint and options. Options will be set as query parameters.
+// Build a URL by using endpoint and options. Options will be set as query parameters.
 func (hciClient HciApiClient) buildUrl(endpoint string, options map[string]string) string {
 	query := url.Values{}
 	if options != nil {
@@ -54,8 +54,8 @@ func (hciClient HciApiClient) buildUrl(endpoint string, options map[string]strin
 	return u.String()
 }
 
-//Does the API call to server and returns a HCIResponse. hci errors will be returned in the
-//HCIResponse body, not in the error return value. The error return value is reserved for unexpected errors.
+// Does the API call to server and returns a HCIResponse. hci errors will be returned in the
+// HCIResponse body, not in the error return value. The error return value is reserved for unexpected errors.
 func (hciClient HciApiClient) Do(request HciRequest) (*HciResponse, error) {
 	var bodyBuffer io.Reader
 	if request.Body != nil {

@@ -1,8 +1,8 @@
 # go-hci
 
-[![GoDoc](https://godoc.org/github.com/cloud-ca/go-cloudca?status.svg)](https://godoc.org/github.com/cloud-ca/go-cloudca)
-[![Build Status](https://circleci.com/gh/cloud-ca/go-cloudca.svg?style=svg)](https://circleci.com/gh/cloud-ca/go-cloudca)
-[![license](https://img.shields.io/github/license/cloud-ca/go-cloudca.svg)](https://github.com/cloud-ca/go-cloudca/blob/master/LICENSE)
+[![GoDoc](https://godoc.org/github.com/hypertec-cloud/go-hci?status.svg)](https://godoc.org/github.com/hypertec-cloud/go-hci)
+[![Build Status](https://circleci.com/gh/hypertec-cloud/go-hci.svg?style=svg)](https://circleci.com/gh/hypertec-cloud/go-hci)
+[![license](https://img.shields.io/github/license/hypertec-cloud/go-hci.svg)](https://github.com/hypertec-cloud/go-hci/blob/master/LICENSE)
 
 A Hypertec Cloud client for the Go programming language
 
@@ -14,7 +14,7 @@ Import
 import "github.com/hypertec-cloud/go-hci"
 
 /* import the services you need */
-import "github.com/hypertec-cloud/go-hci/services/chi"
+import "github.com/hypertec-cloud/go-hci/services/hci"
 ```
 
 Create a new HciClient.
