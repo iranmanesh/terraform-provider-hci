@@ -16,6 +16,7 @@ func GetHciResourceMap() map[string]*schema.Resource {
 	return map[string]*schema.Resource{
 		"hci_environment":          resourceHciEnvironment(),
 		"hci_instance":             resourceHciInstance(),
+		"hci_baremetal":            resourceHciBaremetal(),
 		"hci_load_balancer_rule":   resourceHciLoadBalancerRule(),
 		"hci_network":              resourceHciNetwork(),
 		"hci_network_acl":          resourceHciNetworkACL(),
