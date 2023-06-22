@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"strings"
+	"time"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	hc "github.com/hypertec-cloud/go-hci"
@@ -92,6 +93,11 @@ func resourceHciBaremetal() *schema.Resource {
 				ForceNew:    true,
 				Description: "Id of the dedicated group into which the new baremetal will be created",
 			},
+		},
+		Timeouts: &schema.ResourceTimeout{
+			Create: schema.DefaultTimeout(20 * time.Minute),
+			Update: schema.DefaultTimeout(20 * time.Minute),
+			Delete: schema.DefaultTimeout(20 * time.Minute),
 		},
 	}
 }
