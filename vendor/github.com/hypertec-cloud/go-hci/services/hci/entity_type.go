@@ -4,6 +4,7 @@ package hci
 const (
 	AFFINITY_GROUP_ENTITY_TYPE         = "affinitygroups"
 	INSTANCE_ENTITY_TYPE               = "instances"
+	BAREMETAL_ENTITY_TYPE              = "instances"
 	VOLUME_ENTITY_TYPE                 = "volumes"
 	TEMPLATE_ENTITY_TYPE               = "templates"
 	NETWORK_ENTITY_TYPE                = "networks"

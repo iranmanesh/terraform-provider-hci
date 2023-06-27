@@ -96,7 +96,7 @@ This project is licensed under the terms of the MIT license.
 ```txt
 The MIT License (MIT)
 
-Copyright (c) 2019 Hypertec.cloud
+Copyright (c) 2023 hypertec.cloud
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

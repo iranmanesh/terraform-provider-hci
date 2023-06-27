@@ -40,7 +40,7 @@ verify: log-verify ## Verify 'vendor' dependencies
 
 .PHONY: lint
 lint: log-lint ## Run linter
-	@bash -c "GO111MODULE=off gometalinter -d ./... 2> >(egrep '(^DEBUG.*linter took|^DEBUG.*total elapsed|^[^D])' >&2)"
+	golangci-lint run
 
 .PHONY: format
 format: log-format ## Format all go files
@@ -59,7 +59,6 @@ test: log-test ## Run tests
 
 .PHONY: tools
 tools: log-tools ## Install required tools
-	@cd $$GOPATH && curl -L https://git.io/vp6lP | sh # gometalinter
 	@cd /tmp && GO111MODULE=off go get -v -u github.com/git-chglog/git-chglog/cmd/git-chglog # git-chglog
 
 #####################

@@ -22,6 +22,7 @@ const (
 	INSTANCE_RESET_PASSWORD_OPERATION          = "resetPassword"
 	INSTANCE_CREATE_RECOVERY_POINT_OPERATION   = "createRecoveryPoint"
 	INSTANCE_CHANGE_COMPUTE_OFFERING_OPERATION = "changeComputeOffering"
+	INSTANCE_CHANGE_NETWORK_OFFERING_OPERATION = "changeNetwork"
 	INSTANCE_ASSOCIATE_SSH_KEY_OPERATION       = "associateSSHKey"
 )
 
@@ -267,7 +268,7 @@ func (instanceApi *InstanceApi) ChangeNetwork(id string, networkId string) (bool
 	if merr != nil {
 		return false, merr
 	}
-	_, err := instanceApi.entityService.Execute(id, INSTANCE_CHANGE_COMPUTE_OFFERING_OPERATION, send, map[string]string{})
+	_, err := instanceApi.entityService.Execute(id, INSTANCE_CHANGE_NETWORK_OFFERING_OPERATION, send, map[string]string{})
 	return err == nil, err
 }
 
